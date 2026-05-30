@@ -1,0 +1,514 @@
+@import "tailwindcss";
+
+/* ============================================================
+   TAROTISM DESIGN SYSTEM v2 — "Mystic Editorial"
+   Full-palette OKLCH, inspired by Tarovent's editorial panels
+   ============================================================ */
+
+@theme {
+  /* ── Surfaces (indigo-tinted, never pure black) ── */
+  --color-surface: oklch(0.12 0.015 280);
+  --color-surface-dim: oklch(0.08 0.012 280);
+  --color-surface-low: oklch(0.15 0.015 280);
+  --color-surface-container: oklch(0.17 0.018 280);
+  --color-surface-high: oklch(0.20 0.020 280);
+  --color-surface-highest: oklch(0.24 0.020 280);
+  --color-surface-bright: oklch(0.28 0.018 280);
+  --color-surface-strong: oklch(0.14 0.022 280);
+
+  /* ── Brand Colors (OKLCH full palette) ── */
+  --color-primary: oklch(0.78 0.14 85);
+  --color-primary-glow: oklch(0.84 0.15 85);
+  --color-primary-dim: oklch(0.68 0.12 85);
+  --color-secondary: oklch(0.22 0.07 280);
+  --color-secondary-light: oklch(0.38 0.08 280);
+  --color-tertiary: oklch(0.15 0.04 280);
+  --color-tertiary-light: oklch(0.82 0.04 280);
+  --color-purple: oklch(0.55 0.12 290);
+  --color-purple-light: oklch(0.65 0.10 290);
+  --color-teal: oklch(0.60 0.10 175);
+
+  /* ── Text ── */
+  --color-on-surface: oklch(0.92 0.01 280);
+  --color-on-surface-variant: oklch(0.75 0.03 85);
+  --color-on-primary: oklch(0.22 0.04 85);
+  --color-on-secondary: oklch(0.90 0.04 290);
+  --color-muted: oklch(0.58 0.02 280);
+
+  /* ── Outlines ── */
+  --color-outline: oklch(0.50 0.03 85);
+  --color-outline-dim: oklch(0.30 0.025 280);
+
+  /* ── Semantic ── */
+  --color-error: oklch(0.75 0.12 25);
+  --color-success: oklch(0.72 0.10 145);
+
+  /* ── Typography ── */
+  --font-cinzel: var(--font-cinzel-var), "Cinzel", Georgia, serif;
+  --font-serif: var(--font-noto-serif), "Noto Serif", Georgia, serif;
+  --font-sans: var(--font-inter), "Inter", system-ui, sans-serif;
+
+  /* ── Spacing ── */
+  --spacing-unit: 4px;
+  --spacing-gutter: 24px;
+
+  /* ── Radii ── */
+  --radius-panel: 2rem;
+  --radius-card: 1.5rem;
+  --radius-pill: 9999px;
+  --radius-sm: 0.75rem;
+
+  /* ── Animations ── */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* ── Global Defaults ── */
+html {
+  background-color: oklch(0.08 0.012 280);
+  color: oklch(0.92 0.01 280);
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  min-height: 100dvh;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── Ambient Background ── */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(ellipse 80% 50% at 50% -20%, oklch(0.22 0.07 280 / 0.4), transparent),
+    radial-gradient(ellipse 60% 40% at 80% 100%, oklch(0.15 0.04 280 / 0.5), transparent),
+    radial-gradient(ellipse 40% 30% at 20% 80%, oklch(0.78 0.14 85 / 0.04), transparent);
+  pointer-events: none;
+}
+
+/* ============================================================
+   TYPOGRAPHY
+   ============================================================ */
+
+.text-display {
+  font-family: var(--font-cinzel);
+  font-size: clamp(2.2rem, 6vw, 3.5rem);
+  font-weight: 500;
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+}
+
+.text-headline {
+  font-family: var(--font-cinzel);
+  font-size: clamp(1.5rem, 4vw, 2.2rem);
+  font-weight: 500;
+  line-height: 1.15;
+  letter-spacing: 0;
+}
+
+.text-title {
+  font-family: var(--font-cinzel);
+  font-size: clamp(1.15rem, 2.5vw, 1.5rem);
+  font-weight: 500;
+  line-height: 1.25;
+}
+
+.text-body-lg {
+  font-family: var(--font-sans);
+  font-size: 1.0625rem;
+  font-weight: 400;
+  line-height: 1.75;
+}
+
+.text-body {
+  font-family: var(--font-sans);
+  font-size: 0.9375rem;
+  font-weight: 400;
+  line-height: 1.7;
+}
+
+.text-label {
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.text-kicker {
+  font-family: var(--font-sans);
+  font-size: 0.625rem;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+}
+
+/* ============================================================
+   EDITORIAL PANELS (Tarovent-inspired)
+   ============================================================ */
+
+.mystic-panel {
+  background: var(--color-surface-container);
+  border: 1px solid oklch(0.30 0.025 280 / 0.7);
+  border-radius: var(--radius-panel);
+  padding: 1.5rem;
+}
+
+.mystic-panel-strong {
+  background: var(--color-surface-strong);
+  border: 1px solid oklch(0.30 0.025 280 / 0.5);
+  border-radius: var(--radius-panel);
+  padding: 1.5rem;
+}
+
+.mystic-panel-muted {
+  background: oklch(0.14 0.018 280 / 0.6);
+  border: 1px solid oklch(0.30 0.025 280 / 0.5);
+  border-radius: var(--radius-card);
+  transition: border-color 0.3s var(--ease-out-quart);
+}
+
+.mystic-panel-muted:hover {
+  border-color: oklch(0.55 0.12 290 / 0.35);
+}
+
+/* ============================================================
+   CHOICE CARDS (Tarovent spread-picker style)
+   ============================================================ */
+
+.choice-card {
+  background: var(--color-surface-container);
+  border: 1px solid oklch(0.30 0.025 280 / 0.7);
+  border-radius: var(--radius-card);
+  cursor: pointer;
+  transition: all 0.3s var(--ease-out-quart);
+}
+
+.choice-card:hover {
+  border-color: oklch(0.55 0.12 290 / 0.4);
+  background: oklch(0.20 0.025 280);
+}
+
+.choice-card-active {
+  border-color: oklch(0.78 0.14 85 / 0.5) !important;
+  background: oklch(0.17 0.03 85 / 0.3) !important;
+  box-shadow: 0 0 30px oklch(0.78 0.14 85 / 0.08);
+}
+
+/* ============================================================
+   EDITORIAL PILLS & CHIPS
+   ============================================================ */
+
+.mystic-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.375rem 0.875rem;
+  border-radius: var(--radius-pill);
+  border: 1px solid oklch(0.30 0.025 280 / 0.7);
+  background: var(--color-surface-container);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-on-surface-variant);
+}
+
+.editorial-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1.25rem;
+  border-radius: var(--radius-pill);
+  border: 1px solid oklch(0.30 0.025 280 / 0.7);
+  background: var(--color-surface-container);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--color-muted);
+  transition: all 0.3s var(--ease-out-quart);
+  cursor: pointer;
+}
+
+.editorial-chip:hover {
+  background: var(--color-surface-high);
+  color: var(--color-on-surface);
+  border-color: oklch(0.50 0.03 85 / 0.5);
+}
+
+.editorial-chip-active {
+  border-color: oklch(0.78 0.14 85 / 0.5);
+  background: oklch(0.17 0.03 85 / 0.2);
+  color: var(--color-primary);
+}
+
+/* ============================================================
+   ICON BADGES
+   ============================================================ */
+
+.icon-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 1rem;
+  border: 1px solid oklch(0.78 0.14 85 / 0.2);
+  background: var(--color-surface-strong);
+  color: var(--color-primary);
+  flex-shrink: 0;
+}
+
+.icon-badge-lg {
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 1.125rem;
+}
+
+/* ============================================================
+   BUTTONS
+   ============================================================ */
+
+.btn-mystic {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: oklch(0.15 0.04 280);
+  border: 1px solid var(--color-primary);
+  color: var(--color-primary);
+  font-family: var(--font-cinzel);
+  font-weight: 600;
+  font-size: 0.875rem;
+  padding: 0.875rem 2rem;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  transition: all 0.3s var(--ease-out-quart);
+  letter-spacing: 0.04em;
+}
+
+.btn-mystic::after {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  box-shadow: 0 0 24px oklch(0.78 0.14 85 / 0.12);
+  opacity: 1;
+  transition: opacity 0.3s;
+  pointer-events: none;
+}
+
+.btn-mystic:hover {
+  background: oklch(0.78 0.14 85 / 0.12);
+  box-shadow: 0 0 36px oklch(0.78 0.14 85 / 0.2);
+}
+
+.btn-mystic:active {
+  box-shadow: 0 0 48px oklch(0.78 0.14 85 / 0.35);
+  transform: scale(0.97);
+}
+
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1.25rem;
+  border-radius: var(--radius-pill);
+  border: 1px solid oklch(0.30 0.025 280 / 0.7);
+  background: var(--color-surface-container);
+  color: var(--color-muted);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s var(--ease-out-quart);
+}
+
+.btn-ghost:hover {
+  color: var(--color-on-surface);
+  background: var(--color-surface-high);
+}
+
+/* ============================================================
+   GLASSMORPHIC NAV
+   ============================================================ */
+
+.glass-nav {
+  background: oklch(0.12 0.02 280 / 0.85);
+  backdrop-filter: blur(20px) saturate(1.4);
+  -webkit-backdrop-filter: blur(20px) saturate(1.4);
+  border-bottom: 1px solid oklch(0.30 0.025 280 / 0.6);
+}
+
+/* ============================================================
+   CARD COMPONENTS
+   ============================================================ */
+
+.card-glow {
+  box-shadow: 0 0 30px oklch(0.78 0.14 85 / 0.12);
+}
+
+.card-glow-active {
+  box-shadow:
+    0 0 40px oklch(0.78 0.14 85 / 0.2),
+    0 0 80px oklch(0.78 0.14 85 / 0.08);
+}
+
+/* ── 3D Card Flip ── */
+.perspective {
+  perspective: 1200px;
+}
+
+.card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.8s var(--ease-out-expo);
+  transform-style: preserve-3d;
+}
+
+.card-inner.flipped {
+  transform: rotateY(180deg);
+}
+
+.card-face {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+
+.card-back {
+  transform: rotateY(0deg);
+}
+
+.card-front {
+  transform: rotateY(180deg);
+}
+
+/* ── Card Back Pattern ── */
+.card-back-pattern {
+  background:
+    linear-gradient(135deg, transparent 40%, oklch(0.78 0.14 85 / 0.06) 50%, transparent 60%),
+    linear-gradient(45deg, oklch(0.15 0.04 280) 0%, oklch(0.22 0.07 280) 100%);
+  border: 1px solid oklch(0.78 0.14 85 / 0.4);
+}
+
+/* ============================================================
+   EDITORIAL DIVIDER
+   ============================================================ */
+
+.editorial-divider {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    oklch(0.30 0.025 280 / 0.7) 20%,
+    oklch(0.30 0.025 280 / 0.7) 80%,
+    transparent
+  );
+  margin: 1.25rem 0;
+}
+
+/* ============================================================
+   SELECTION & SCROLLBAR
+   ============================================================ */
+
+::selection {
+  background: oklch(0.78 0.14 85 / 0.25);
+  color: oklch(0.92 0.01 280);
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: oklch(0.12 0.015 280);
+}
+
+::-webkit-scrollbar-thumb {
+  background: oklch(0.30 0.025 280);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: oklch(0.50 0.03 85);
+}
+
+/* ============================================================
+   ANIMATIONS
+   ============================================================ */
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.typing-cursor::after {
+  content: "▍";
+  color: var(--color-primary);
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 20px oklch(0.78 0.14 85 / 0.08);
+  }
+  50% {
+    box-shadow: 0 0 40px oklch(0.78 0.14 85 / 0.22);
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2.5s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.shimmer {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    oklch(0.78 0.14 85 / 0.06) 50%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 3s ease-in-out infinite;
+}
+
+@keyframes golden-reveal {
+  0% {
+    box-shadow: 0 0 0 oklch(0.78 0.14 85 / 0);
+  }
+  50% {
+    box-shadow: 0 0 60px oklch(0.78 0.14 85 / 0.4), 0 0 120px oklch(0.78 0.14 85 / 0.15);
+  }
+  100% {
+    box-shadow: 0 0 30px oklch(0.78 0.14 85 / 0.12);
+  }
+}
+
+.animate-golden-reveal {
+  animation: golden-reveal 1s var(--ease-out-expo) forwards;
+}
+
+/* ── Reduced Motion ── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
