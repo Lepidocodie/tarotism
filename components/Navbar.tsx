@@ -4,49 +4,47 @@ import Link from "next/link";
 
 export default function Navbar() {
   return (
-    <nav className="glass-nav fixed top-0 left-0 right-0 z-50">
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6 py-3">
+    <nav className="fixed top-0 left-0 right-0 z-50 px-6 py-4 border-b border-gray-800/60 bg-[#0a0e17] shadow-sm">
+      <div className="max-w-7xl mx-auto flex items-center justify-between">
         {/* Logo */}
-        <Link href="/" className="group flex items-center gap-3">
-          <div className="relative rounded-full border border-outline-dim bg-surface-strong p-1.5">
-            <div className="relative h-8 w-8 rounded-full bg-secondary flex items-center justify-center">
-              <span className="text-primary text-lg font-bold" style={{ fontFamily: "var(--font-cinzel)" }}>T</span>
-            </div>
+        <Link href="/" className="group flex items-center gap-4">
+          <div className="w-10 h-10 rounded-full border border-gold-500/40 flex items-center justify-center text-gold-400 text-xl bg-[#10141f]" style={{ fontFamily: "var(--font-serif)" }}>
+            T
           </div>
           <div>
             <span
-              className="block text-lg font-semibold text-primary transition-colors group-hover:text-purple-light"
-              style={{ fontFamily: "var(--font-cinzel)" }}
+              className="block text-lg font-medium text-gold-400 tracking-[0.15em] uppercase leading-[1.2] group-hover:text-gold-300 transition-colors"
+              style={{ fontFamily: "var(--font-serif)" }}
             >
               Tarotism
             </span>
-            <span className="hidden text-[10px] uppercase tracking-[0.24em] text-muted sm:block">
+            <span className="block text-[8px] text-gray-500 tracking-[0.25em] uppercase mt-0.5">
               AI Tarot Reading
             </span>
           </div>
         </Link>
 
         {/* Navigation Pills */}
-        <nav className="hidden items-center gap-1 rounded-full border border-outline-dim/80 bg-surface-strong p-1 md:flex">
+        <div className="hidden md:flex items-center space-x-10 text-sm tracking-[0.1em] text-[#a3a8b8]">
           <Link
             href="/"
-            className="rounded-full px-4 py-2 text-sm font-medium transition-all border border-outline-dim bg-surface-container text-purple"
+            className="px-5 py-2 rounded-full border border-gray-700/50 bg-[#141b2d] text-gold-400 font-medium transition-colors"
           >
             Home
           </Link>
-          <span className="rounded-full px-4 py-2 text-sm font-medium text-muted cursor-default">
+          <span className="hover:text-gold-400 transition-colors cursor-pointer">
             History
           </span>
-          <span className="rounded-full px-4 py-2 text-sm font-medium text-muted cursor-default">
+          <span className="hover:text-gold-400 transition-colors cursor-pointer">
             About
           </span>
-        </nav>
+        </div>
 
         {/* CTA */}
         <div className="hidden items-center gap-3 md:flex">
           <Link
             href="/"
-            className="btn-mystic text-sm px-5 py-2"
+            className="px-6 py-2.5 rounded-full border border-gold-500/40 bg-transparent text-xs tracking-widest text-gold-400 hover:bg-[#d4af37]/10 hover:border-[#d4af37]/70 transition-all font-medium uppercase"
           >
             New Reading
           </Link>
@@ -54,7 +52,7 @@ export default function Navbar() {
 
         {/* Mobile Menu Button */}
         <button
-          className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-outline-dim/80 bg-surface-container text-on-surface transition-colors hover:text-purple md:hidden"
+          className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-gray-700/50 bg-[#10141f] text-gray-400 transition-colors hover:text-gold-400 md:hidden"
           aria-label="Toggle navigation"
         >
           <svg

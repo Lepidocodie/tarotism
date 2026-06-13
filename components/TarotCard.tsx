@@ -44,10 +44,10 @@ export default function TarotCard({ drawnCard, index, onFlip, isRevealed }: Prop
             onFlip();
           }
         }}
-        className={`perspective cursor-pointer w-full aspect-[20/34] outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-surface ${
+        className={`perspective cursor-pointer w-full aspect-[20/34] outline-none focus-visible:ring-2 focus-visible:ring-gold-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0e17] ${
           isRevealed
             ? "animate-golden-reveal"
-            : "animate-pulse-glow hover:-translate-y-2 transition-transform duration-300"
+            : "hover:-translate-y-2 transition-transform duration-300 shadow-md hover:shadow-lg"
         }`}
         onClick={() => !isRevealed && onFlip()}
       >
@@ -81,8 +81,8 @@ export default function TarotCard({ drawnCard, index, onFlip, isRevealed }: Prop
                   onError={() => setImgError(true)}
                 />
               ) : (
-                <div className="flex-1 flex items-center justify-center bg-secondary p-4">
-                  <span className="text-body text-center text-on-surface" style={{ fontFamily: "var(--font-cinzel)" }}>
+                <div className="flex-1 flex items-center justify-center bg-[#141b2d] p-4">
+                  <span className="text-body text-center text-gray-200" style={{ fontFamily: "var(--font-serif)" }}>
                     {card.name}
                   </span>
                 </div>
@@ -100,7 +100,7 @@ export default function TarotCard({ drawnCard, index, onFlip, isRevealed }: Prop
           transition={{ delay: 0.3, duration: 0.4 }}
           className="text-center"
         >
-          <p className="text-sm md:text-base text-on-surface font-medium" style={{ fontFamily: "var(--font-cinzel)" }}>
+          <p className="text-sm md:text-base text-gray-200 font-medium tracking-wide" style={{ fontFamily: "var(--font-serif)" }}>
             {card.name}
           </p>
           {isReversed && (

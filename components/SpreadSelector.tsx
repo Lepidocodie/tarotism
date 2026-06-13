@@ -25,92 +25,71 @@ export default function SpreadSelector({ onSelect }: Props) {
       </div>
 
       {/* Editorial panel wrapper */}
-      <div className="mystic-panel-strong w-full max-w-2xl p-5 sm:p-6">
-        {/* Section kicker */}
-        <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between mb-5">
-          <p className="text-kicker">Select Spread Type</p>
-          <div className="flex flex-wrap items-center gap-2">
-            <span className="mystic-pill text-[10px]">
-              1 or 3 Cards
-            </span>
-          </div>
-        </div>
-
+      <div className="w-full max-w-4xl p-2 sm:p-4">
         {/* Spread options */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 relative">
           {/* Single Card */}
           <motion.button
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+            initial={{ opacity: 0, x: -30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ type: "spring", bounce: 0.4 }}
             onClick={() => onSelect("single")}
-            className="choice-card p-5 text-left"
+            className="flat-card text-center p-8 flex flex-col items-center group relative z-10 hover:border-gold-400"
           >
-            <div className="flex items-center justify-between gap-3 mb-4">
-              <div className="icon-badge">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M10.5 3 8 9l4 13 4-13-2.5-6" />
-                  <path d="M17 3a2 2 0 0 1 1.6.8l3 4a2 2 0 0 1 .013 2.382l-7.99 10.986a2 2 0 0 1-3.247 0l-7.99-10.986A2 2 0 0 1 2.4 7.8l2.998-3.997A2 2 0 0 1 7 3z" />
-                  <path d="M2 9h20" />
-                </svg>
-              </div>
-              <span className="rounded-full border border-outline-dim/70 bg-surface-container px-2.5 py-1 text-[9px] uppercase tracking-[0.12em] text-muted">
-                Quick read
-              </span>
+            <div className="text-primary mb-4 w-12 h-12 flex items-center justify-center">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                <rect x="5" y="2" width="14" height="20" rx="2" />
+                <circle cx="12" cy="12" r="3" />
+                <path d="M12 2v2" />
+                <path d="M12 20v2" />
+              </svg>
             </div>
-            <h3 className="text-title text-on-surface mb-1.5">
-              Single Card
+            <h3 className="text-2xl font-serif text-on-surface mb-2" style={{ fontFamily: "var(--font-serif)" }}>
+              SINGLE CARD
             </h3>
-            <p className="text-[11px] uppercase tracking-[0.16em] text-purple mb-2">
+            <p className="text-[11px] uppercase tracking-[0.16em] text-muted mb-4">
               ไพ่ 1 ใบ สำหรับคำตอบที่ชัดเจน
             </p>
-            <div className="inline-flex items-center gap-1 rounded-md border border-primary/30 bg-primary/8 px-2 py-0.5">
+            <div className="inline-flex items-center gap-1 rounded-full border border-primary/30 bg-primary/10 px-4 py-1.5">
               <span className="text-[9px] font-semibold uppercase tracking-[0.14em] text-primary">
-                1-card clarity
+                1-CARD CLARITY
               </span>
             </div>
           </motion.button>
 
           {/* Three Card */}
           <motion.button
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.08, ease: [0.16, 1, 0.3, 1] }}
+            initial={{ opacity: 0, x: 30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ type: "spring", bounce: 0.4, delay: 0.1 }}
             onClick={() => setSelectedSpread("three")}
-            className={`choice-card p-5 text-left ${
-              selectedSpread === "three" ? "choice-card-active" : ""
+            className={`flat-card text-center p-8 flex flex-col items-center group relative z-10 hover:border-gold-400 ${
+              selectedSpread === "three" ? "border-gold-500 shadow-md" : ""
             }`}
           >
-            <div className="flex items-center justify-between gap-3 mb-4">
-              <div className="icon-badge">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M13 13.74a2 2 0 0 1-2 0L2.5 8.87a1 1 0 0 1 0-1.74L11 2.26a2 2 0 0 1 2 0l8.5 4.87a1 1 0 0 1 0 1.74z" />
-                  <path d="m20 14.285 1.5.845a1 1 0 0 1 0 1.74L13 21.74a2 2 0 0 1-2 0l-8.5-4.87a1 1 0 0 1 0-1.74l1.5-.845" />
-                </svg>
-              </div>
-              {selectedSpread === "three" ? (
-                <motion.span
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  className="rounded-full border border-primary/30 bg-surface-strong px-2.5 py-1 text-[9px] uppercase tracking-[0.12em] text-primary"
-                >
-                  Selected
-                </motion.span>
-              ) : (
-                <span className="rounded-full border border-outline-dim/70 bg-surface-container px-2.5 py-1 text-[9px] uppercase tracking-[0.12em] text-muted">
-                  Deep read
-                </span>
-              )}
+            <div className="text-primary mb-4 flex items-center justify-center gap-2">
+              <svg width="24" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="-rotate-12 opacity-50">
+                <rect x="5" y="2" width="14" height="20" rx="2" />
+                <path d="M12 8v8" />
+              </svg>
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="z-10">
+                <rect x="5" y="2" width="14" height="20" rx="2" />
+                <circle cx="12" cy="12" r="3" />
+              </svg>
+              <svg width="24" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="rotate-12 opacity-50">
+                <rect x="5" y="2" width="14" height="20" rx="2" />
+                <path d="M8 12h8" />
+              </svg>
             </div>
-            <h3 className="text-title text-on-surface mb-1.5">
-              Three Cards
+            <h3 className="text-2xl font-serif text-on-surface mb-2" style={{ fontFamily: "var(--font-serif)" }}>
+              THREE CARDS
             </h3>
-            <p className="text-[11px] uppercase tracking-[0.16em] text-purple mb-2">
+            <p className="text-[11px] uppercase tracking-[0.16em] text-muted mb-4">
               ไพ่ 3 ใบ สำหรับการวิเคราะห์เชิงลึก
             </p>
-            <div className="inline-flex items-center gap-1 rounded-md border border-teal/30 bg-teal/8 px-2 py-0.5">
-              <span className="text-[9px] font-semibold uppercase tracking-[0.14em] text-teal">
-                3-card structure
+            <div className="inline-flex items-center gap-1 rounded-full border border-primary/30 bg-primary/10 px-4 py-1.5">
+              <span className="text-[9px] font-semibold uppercase tracking-[0.14em] text-primary">
+                3-CARD STRUCTURE
               </span>
             </div>
           </motion.button>
@@ -118,48 +97,50 @@ export default function SpreadSelector({ onSelect }: Props) {
 
         {/* Three-card mode sub-options */}
         {selectedSpread === "three" && (
-          <>
-            <div className="editorial-divider" />
-            <motion.div
-              initial={{ opacity: 0, y: 8 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.3 }}
-              className="space-y-3"
-            >
-              <p className="text-kicker">Choose Reading Mode</p>
-              <div className="flex flex-col sm:flex-row gap-2">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="mt-16 relative"
+          >
+            <div className="text-center mb-6 relative z-10">
+              <p className="text-kicker text-primary">CHOOSE READING MODE</p>
+              <p className="text-body text-muted">เลือกโหมดการอ่าน</p>
+            </div>
+            
+            <div className="flex flex-col sm:flex-row gap-6 relative justify-center">
+              <div className="relative group flex-1 max-w-sm">
                 <button
                   onClick={() => onSelect("three", "past-present-future")}
-                  className="editorial-chip flex-1 justify-center py-3.5 text-center cursor-pointer"
+                  className="flat-card w-full p-4 flex items-center justify-center text-center relative z-10 hover:border-gold-400"
                 >
-                  <div>
-                    <span className="block text-sm text-on-surface" style={{ fontFamily: "var(--font-cinzel)" }}>
+                  <div className="flex flex-col items-center">
+                    <span className="block text-lg text-gray-200 font-medium tracking-wide">
                       อดีต — ปัจจุบัน — อนาคต
                     </span>
-                    <span className="block text-[10px] uppercase tracking-[0.14em] text-muted mt-0.5">
-                      Past — Present — Future
-                    </span>
-                  </div>
-                </button>
-                <button
-                  onClick={() => onSelect("three", "problem-cause-advice")}
-                  className="editorial-chip flex-1 justify-center py-3.5 text-center cursor-pointer"
-                >
-                  <div>
-                    <span className="block text-sm text-on-surface" style={{ fontFamily: "var(--font-cinzel)" }}>
-                      ปัญหา — สาเหตุ — คำแนะนำ
-                    </span>
-                    <span className="block text-[10px] uppercase tracking-[0.14em] text-muted mt-0.5">
-                      Problem — Cause — Advice
+                    <span className="block text-[10px] uppercase tracking-[0.14em] text-gray-500 mt-1.5 group-hover:text-gold-500 transition-colors">
+                      PAST — PRESENT — FUTURE
                     </span>
                   </div>
                 </button>
               </div>
-              <p className="text-xs text-muted leading-relaxed">
-                เลือกมุมมองที่เหมาะกับคำถามของคุณ
-              </p>
-            </motion.div>
-          </>
+              <div className="relative group flex-1 max-w-sm">
+                <button
+                  onClick={() => onSelect("three", "problem-cause-advice")}
+                  className="flat-card w-full p-4 flex items-center justify-center text-center relative z-10 hover:border-gold-400"
+                >
+                  <div className="flex flex-col items-center">
+                    <span className="block text-lg text-gray-200 font-medium tracking-wide">
+                      ปัญหา — สาเหตุ — คำแนะนำ
+                    </span>
+                    <span className="block text-[10px] uppercase tracking-[0.14em] text-gray-500 mt-1.5 group-hover:text-gold-500 transition-colors">
+                      PROBLEM — CAUSE — ADVICE
+                    </span>
+                  </div>
+                </button>
+              </div>
+            </div>
+          </motion.div>
         )}
       </div>
     </section>

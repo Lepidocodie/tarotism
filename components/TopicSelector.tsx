@@ -73,50 +73,32 @@ export default function TopicSelector({ onSelect, selected }: Props) {
         </p>
       </div>
 
-      <div className="grid grid-cols-2 md:grid-cols-3 gap-3 w-full max-w-2xl">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-4xl px-4">
         {topics.map((topic, i) => {
           const label = TOPIC_LABELS[topic];
           const isActive = selected === topic;
           return (
             <motion.button
               key={topic}
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: i * 0.06, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+              initial={{ opacity: 0, scale: 0.95, y: 15 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              transition={{ delay: i * 0.05, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+              whileHover={{ scale: 1.02, y: -4 }}
+              whileTap={{ scale: 0.97 }}
               onClick={() => onSelect(topic)}
-              className={`
-                choice-card group relative flex flex-col items-start gap-3 p-5 text-left
-                ${isActive ? "choice-card-active" : ""}
-              `}
+              className="flat-card group p-6 h-[140px] flex flex-col items-start justify-end w-full"
             >
-              {/* Icon badge */}
-              <div className="flex items-center justify-between w-full gap-3">
-                <div className={`icon-badge transition-colors duration-300 ${isActive ? "border-primary/40 text-primary" : ""}`}>
-                  {TOPIC_ICONS[topic]}
-                </div>
-                {isActive && (
-                  <motion.span
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    className="rounded-full border border-primary/30 bg-surface-strong px-2.5 py-1 text-[9px] uppercase tracking-[0.12em] text-primary"
-                  >
-                    Selected
-                  </motion.span>
-                )}
+              <div className="absolute top-5 left-5 w-10 h-10 rounded-full border border-gray-600/50 flex items-center justify-center text-gold-400/60 group-hover:text-gold-400 group-hover:border-gold-500/50 transition-colors">
+                {TOPIC_ICONS[topic]}
               </div>
-
-              {/* Labels */}
-              <div>
-                <span
-                  className={`block text-title transition-colors duration-300 ${
-                    isActive ? "text-on-surface" : "text-on-surface"
-                  }`}
-                >
+              
+              <div className="w-full flex flex-col items-center text-center">
+                <h3 className="text-gray-100 font-medium text-xl tracking-wide group-hover:text-gold-300 transition-colors" style={{ fontFamily: "var(--font-serif)" }}>
                   {label.th}
-                </span>
-                <span className="text-kicker mt-1 block" style={{ color: isActive ? "var(--color-purple)" : "var(--color-muted)" }}>
+                </h3>
+                <p className="text-gray-500 text-[9px] tracking-[0.2em] mt-1.5 uppercase font-medium group-hover:text-gold-500/60 transition-colors">
                   {label.en}
-                </span>
+                </p>
               </div>
             </motion.button>
           );

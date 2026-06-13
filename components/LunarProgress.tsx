@@ -95,13 +95,6 @@ export default function LunarProgress({ currentStep }: Props) {
                     />
                   )}
                 </svg>
-                {/* Glow for current */}
-                {isCurrent && (
-                  <div
-                    className="absolute inset-0 rounded-full animate-pulse-glow"
-                    style={{ filter: "blur(8px)", opacity: 0.5 }}
-                  />
-                )}
               </motion.div>
               {/* Label */}
               <div className="text-center min-w-[3.5rem]">
@@ -127,7 +120,7 @@ export default function LunarProgress({ currentStep }: Props) {
             </div>
             {/* Connector line */}
             {i < STEPS.length - 1 && (
-              <div className="relative mx-1 md:mx-2 w-6 md:w-12 h-px self-start mt-[14px] md:mt-[14px]">
+              <div className="relative mx-1 md:mx-2 w-6 md:w-12 h-px self-start mt-[14px]">
                 <div className="absolute inset-0 bg-outline-dim/50" />
                 {isCompleted && (
                   <motion.div

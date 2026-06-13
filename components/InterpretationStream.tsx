@@ -92,55 +92,71 @@ export default function InterpretationStream({ reading }: Props) {
       </div>
 
       {/* Content panel */}
-      <div className="mystic-panel p-6 md:p-8">
-        {error ? (
-          <div className="text-center py-8">
-            <div className="icon-badge-lg mx-auto mb-4" style={{ borderColor: "var(--color-error)", color: "var(--color-error)" }}>
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <circle cx="12" cy="12" r="10" />
-                <path d="m15 9-6 6" />
-                <path d="m9 9 6 6" />
-              </svg>
-            </div>
-            <p className="text-error mb-3 text-sm">{error}</p>
-            <p className="text-body text-muted mb-6">
-              กรุณาลองใหม่อีกครั้ง หรือติดต่อผู้พัฒนา
-            </p>
-            <button
-              onClick={() => window.location.reload()}
-              className="btn-mystic"
-            >
-              ลองใหม่
-            </button>
-          </div>
-        ) : (
-          <>
-            {!completion && isLoading && (
-              <div className="flex flex-col items-center gap-4 py-12" role="status" aria-label="กำลังตีความไพ่ของคุณ">
-                <div className="relative">
-                  <div className="w-12 h-12 rounded-full border-2 border-primary/20 border-t-primary animate-spin" />
-                  <div className="absolute inset-0 rounded-full animate-pulse-glow" style={{ filter: "blur(6px)" }} />
-                </div>
-                <p className="text-body text-muted">
-                  กำลังตีความไพ่ของคุณ...
-                </p>
-              </div>
-            )}
+      <div className="max-w-2xl mx-auto mt-8 relative">
+        {/* Left Decorative Sidebar */}
+        <div className="absolute left-0 top-1/2 -translate-y-1/2 flex flex-col gap-6 text-primary/40 hidden md:flex">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2A10 10 0 1 0 12 22A10 10 0 1 0 12 2ZM12 4A8 8 0 1 1 12 20A8 8 0 1 1 12 4Z"/></svg>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2A10 10 0 1 0 12 22A10 10 0 0 0 12 2Z"/></svg>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2A10 10 0 1 1 12 22A10 10 0 1 1 12 2ZM12 4A8 8 0 1 0 12 20A8 8 0 1 0 12 4Z"/></svg>
+        </div>
 
-            {completion && (
-              <div
-                className={`text-body-lg text-on-surface leading-relaxed whitespace-pre-wrap ${
-                  isLoading ? "typing-cursor" : ""
-                }`}
-                style={{ fontFamily: "var(--font-sans)" }}
-                aria-live="polite"
-                aria-atomic="false"
-              >
-                {completion}
+        <div className="flat-card p-8 md:p-12">
+          {error ? (
+            <div className="text-center py-8">
+              <div className="icon-badge-lg mx-auto mb-4" style={{ borderColor: "var(--color-error)", color: "var(--color-error)" }}>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <circle cx="12" cy="12" r="10" />
+                  <path d="m15 9-6 6" />
+                  <path d="m9 9 6 6" />
+                </svg>
               </div>
-            )}
-          </>
-        )}
+              <p className="text-error mb-3 text-sm">{error}</p>
+              <p className="text-body text-muted mb-6">
+                กรุณาลองใหม่อีกครั้ง หรือติดต่อผู้พัฒนา
+              </p>
+              <button
+                onClick={() => window.location.reload()}
+                className="btn-mystic"
+              >
+                ลองใหม่
+              </button>
+            </div>
+          ) : (
+            <>
+              {!completion && isLoading && (
+                <div className="flex flex-col items-center gap-4 py-12" role="status" aria-label="กำลังตีความไพ่ของคุณ">
+                  <div className="relative">
+                    <div className="w-12 h-12 rounded-full border-2 border-primary/20 border-t-primary animate-spin" />
+                    <div className="absolute inset-0 rounded-full animate-pulse-glow" style={{ filter: "blur(6px)" }} />
+                  </div>
+                  <p className="text-body text-muted">
+                    กำลังตีความไพ่ของคุณ...
+                  </p>
+                </div>
+              )}
+
+              {completion && (
+                <div
+                  className={`text-body-lg text-on-surface leading-relaxed whitespace-pre-wrap ${
+                    isLoading ? "typing-cursor" : ""
+                  }`}
+                  style={{ fontFamily: "var(--font-sans)" }}
+                  aria-live="polite"
+                  aria-atomic="false"
+                >
+                  {completion}
+                </div>
+              )}
+            </>
+          )}
+        </div>
+
+        {/* Right Decorative Sidebar */}
+        <div className="absolute right-0 top-1/2 -translate-y-1/2 flex flex-col gap-6 text-primary/40 hidden md:flex">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2A10 10 0 1 1 12 22A10 10 0 1 1 12 2ZM12 4A8 8 0 1 0 12 20A8 8 0 1 0 12 4Z"/></svg>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2A10 10 0 1 0 12 22A10 10 0 0 0 12 2Z"/></svg>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2A10 10 0 1 0 12 22A10 10 0 1 0 12 2ZM12 4A8 8 0 1 1 12 20A8 8 0 1 1 12 4Z"/></svg>
+        </div>
       </div>
     </motion.section>
   );
